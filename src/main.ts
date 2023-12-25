@@ -58,6 +58,7 @@ async function bootstrap() {
   await app.listen(10001);
 
   console.log('Server started on port 10001');
+  console.log('Swagger started on http://localhost:10001/docs');
 }
 
 bootstrap();
