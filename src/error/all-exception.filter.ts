@@ -19,6 +19,8 @@ export class AllExceptionFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
+    console.error(exception);
+
     response.status(status).json({
       retcode: status,
       message: (exception as RuntimeException).message || 'Internal Error',

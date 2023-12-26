@@ -59,4 +59,15 @@ export class TodoService {
       id,
     });
   }
+
+  /**
+   * Remove all todos of a user
+   * @param usreId
+   * @returns
+   */
+  async removeAll(usreId: number) {
+    return this.todoRepository.delete({
+      author: { id: usreId },
+    });
+  }
 }

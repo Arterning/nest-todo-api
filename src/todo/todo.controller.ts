@@ -40,6 +40,31 @@ export class TodoController {
     }
   }
 
+  /**
+   * https://stackoverflow.com/questions/59118081/nestjs-validation-failed-numeric-string-is-expected-inside-controllers-nested
+   * 
+   * As answers given are not really explaining the "why" of this behaviour, here's a quick explanation:
+
+It's just a matter of ordering and what route is met First: "removeAll" is mistaken with an ":id", like 123, 204...etc.
+
+As your router tries the first route that meet route requirements (pattern in this case), your request is forwarded to /id route. It happens in every http framework with a router.
+
+Validation occurs later on. So in short, the only thing that matters in route selection, is pattern, not validation set in it.
+
+This ordering is really important, as you'll face same exact issue in all major http framework with a router.
+   * @param request
+   * @returns
+   */
+  @Get('/removeAll')
+  async removeAll(@Request() request) {
+    const { id: userId } = request.user;
+    console.log(`removeAll userId: ${userId}`);
+    await this.todoService.removeAll(userId);
+    return {
+      userId,
+    };
+  }
+
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<Todo> {
     return this.todoService.findOne(id);

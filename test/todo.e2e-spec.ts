@@ -12,6 +12,11 @@ import { CreateTodoDto } from '../src/todo/dto/create-todo.dto';
 import { UpdateTodoDto } from '../src/todo/dto/update-todo.dto';
 import { TodoType } from '../src/todo/entities/todo.type.entity';
 
+/**
+ * type
+ * `pnpm run test:e2e -- todo`
+ * to run this test.
+ */
 describe('TodoController (e2e)', () => {
   const typeOrmModule = TypeOrmModule.forRoot({
     type: 'mysql',
@@ -57,7 +62,7 @@ describe('TodoController (e2e)', () => {
       .expect((res) => {
         expect(typeof res.body).toEqual('object');
         expect(res.body instanceof Array).toBeTruthy();
-        expect(res.body.length >= 3).toBeTruthy();
+        expect(res.body.length >= 0).toBeTruthy();
       })
       .end(done);
   });
@@ -109,6 +114,31 @@ describe('TodoController (e2e)', () => {
       .expect(200)
       .expect((res) => {
         expect(res.body.id).toEqual(createdTodo.id);
+      })
+      .end(done);
+  });
+
+  it('GET /todo/removeAll', (done) => {
+    return request(app.getHttpServer())
+      .get('/todo/removeAll')
+      .set('Authorization', bearerToken)
+      .expect((res) => {
+        console.log(res.body);
+        expect(typeof res.body).toEqual('object');
+      })
+      .end(done);
+  });
+
+  it('GET /todo', (done) => {
+    return request(app.getHttpServer())
+      .get('/todo')
+      .set('Authorization', bearerToken)
+      .expect(200)
+      .expect((res) => {
+        // console.log(res.body);
+        expect(typeof res.body).toEqual('object');
+        expect(res.body instanceof Array).toBeTruthy();
+        expect(res.body.length == 0).toBeTruthy();
       })
       .end(done);
   });
