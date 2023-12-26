@@ -6,8 +6,7 @@ export interface Response<T> {
 }
 
 export class TransformInterceptor<T>
-  implements NestInterceptor<T, Response<T>>
-{
+  implements NestInterceptor<T, Response<T>> {
   intercept(context: ExecutionContext, next: CallHandler<T>) {
     return next.handle().pipe(
       map((data) => ({
