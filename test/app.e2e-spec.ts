@@ -11,6 +11,7 @@ import { Todo } from '../src/todo/entities/todo.entity';
 import { TodoType } from '../src/todo/entities/todo.type.entity';
 import { AppModule } from '../src/app.module';
 import { AppService } from '../src/app.service';
+import { Contact } from '../src/contact/entities/contact.entity';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -20,7 +21,7 @@ describe('AppController (e2e)', () => {
     database: 'nest-todo',
     username: 'root',
     password: '123456',
-    entities: [User, Todo, TodoType],
+    entities: [User, Todo, TodoType, Contact],
   });
 
   beforeEach(async () => {

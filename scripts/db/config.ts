@@ -6,7 +6,7 @@ import { Contact } from '../../src/contact/entities/contact.entity';
 
 const ormConfig: ConnectionOptions = {
   type: 'mysql',
-  database: 'nest_todo',
+  database: 'nest-todo',
   host: 'localhost',
   port: 3306,
   username: 'root',

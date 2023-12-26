@@ -15,7 +15,7 @@ import { TodoType } from '../src/todo/entities/todo.type.entity';
 describe('TodoController (e2e)', () => {
   const typeOrmModule = TypeOrmModule.forRoot({
     type: 'mysql',
-    database: 'nest_todo',
+    database: 'nest-todo',
     username: 'root',
     password: '123456',
     entities: [User, Todo, TodoType],
