@@ -55,10 +55,10 @@ async function bootstrap() {
 
   setupSwagger(app);
 
-  await app.listen(10001);
+  await app.listen(3001);
 
-  console.log('Server started on port 10001');
-  console.log('Swagger started on http://localhost:10001/docs');
+  console.log('Server started on port 3001');
+  console.log('Swagger started on http://localhost:3001/docs');
 }
 
 bootstrap();
