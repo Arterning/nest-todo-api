@@ -1,0 +1,29 @@
+
+
+###
+GET http://localhost:3001/api/project
+
+
+###
+GET http://localhost:3001/api/project/6
+
+
+###
+POST http://localhost:3001/api/project
+Content-Type: application/json
+
+{
+  "title": "react",
+  "description": "good items"
+}
+
+
+
+###
+PATCH http://localhost:3001/api/project/6
+Content-Type: application/json
+
+{
+  "title": "react66",
+  "description": "good items"
+}

@@ -14,6 +14,7 @@ import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Todo } from './entities/todo.entity';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { SkipJwtAuth } from 'src/auth/constants';
 
 @ApiTags('待办事项')
 @ApiBearerAuth()
@@ -29,8 +30,18 @@ export class TodoController {
     return this.todoService.create(request.user.id, createTodoDto);
   }
 
+  @SkipJwtAuth()
+  @Post('anonymousCreate')
+  async createAnonymous(@Body() body) {
+    return this.todoService.createAnonymous(body);
+  }
+
   @Get()
+  @SkipJwtAuth()
   async findAll(@Request() request): Promise<Todo[]> {
+    if (request.user == null) {
+      return this.todoService.findAll();
+    }
     const { id, is_admin } = request.user;
 
     if (is_admin === 1) {
@@ -42,7 +53,7 @@ export class TodoController {
 
   /**
    * https://stackoverflow.com/questions/59118081/nestjs-validation-failed-numeric-string-is-expected-inside-controllers-nested
-   * 
+   *
    * As answers given are not really explaining the "why" of this behaviour, here's a quick explanation:
 
 It's just a matter of ordering and what route is met First: "removeAll" is mistaken with an ":id", like 123, 204...etc.
@@ -66,15 +77,18 @@ This ordering is really important, as you'll face same exact issue in all major 
   }
 
   @Get(':id')
+  @SkipJwtAuth()
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<Todo> {
     return this.todoService.findOne(id);
   }
 
   @Patch(':id')
+  @SkipJwtAuth()
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateTodoDto: UpdateTodoDto,
   ) {
+    console.log(updateTodoDto, '@@@');
     await this.todoService.update(id, updateTodoDto);
     return updateTodoDto;
   }

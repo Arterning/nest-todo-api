@@ -1,0 +1,27 @@
+POST http://localhost:3001/api/todo/anonymousCreate
+Content-Type: application/json;charset=UTF-8
+
+{
+  "title": "sdfsdf",
+  "description": "sdaf",
+  "media": "",
+  "status": "1"
+}
+
+
+###
+PATCH http://localhost:3001/api/todo/63
+Content-Type: application/json
+
+{
+    "title": "争它少标",
+    "description":"kj",
+    "status":"0",
+    "media":"asdf"
+}
+
+
+###
+GET http://localhost:3001/api/todo/63
+Content-Type: application/json
+

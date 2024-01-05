@@ -26,6 +26,12 @@ export class TodoService {
     return this.todoRepository.save(todo);
   }
 
+  async createAnonymous(createTodoDto: CreateTodoDto): Promise<Todo> {
+    return this.todoRepository.save({
+      ...createTodoDto,
+    });
+  }
+
   async findAll(): Promise<Todo[]> {
     return this.todoRepository.find();
   }
@@ -47,8 +53,8 @@ export class TodoService {
     const { title, description, status, media } = updateTodoDto;
 
     return this.todoRepository.update(id, {
-      title,
-      description,
+      title: title || '',
+      description: description || '',
       status: status || TodoStatus.TODO,
       media: media || '',
     });

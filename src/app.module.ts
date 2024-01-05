@@ -14,6 +14,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { QuoteModule } from './quote/quote.module';
 import { CountModule } from './count/count.module';
 import { ContactModule } from './contact/contact.module';
+import { ProjectModule } from './project/project.module';
 
 const DOCKER_ENV = process.env.DOCKER_ENV;
 
@@ -63,7 +64,7 @@ const libModules = [
 ];
 
 @Module({
-  imports: [...libModules, ...businessModules, ContactModule],
+  imports: [...libModules, ...businessModules, ContactModule, ProjectModule],
   controllers: [AppController],
   providers: [AppService],
 })

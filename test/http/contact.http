@@ -1,0 +1,24 @@
+
+###
+GET http://localhost:3001/api/contact
+
+
+
+###
+POST http://localhost:3001/api/contact
+Content-Type: application/json
+
+{
+  "phone":"23",
+  "address":"234"
+}
+
+
+###
+PATCH http://localhost:3001/api/contact/1
+Content-Type: application/json
+
+{
+  "phone":"8888888888888",
+  "address":"234"
+}

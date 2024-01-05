@@ -1,14 +1,14 @@
 import { TodoStatus } from '../entities/todo.entity';
-import { IsAlphanumeric, IsNumber, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class CreateTodoDto {
-  @IsAlphanumeric()
+  @IsString()
   title: string; // 标题
 
   @IsString()
   description?: string; // 具体内容
 
-  @IsNumber()
+  @IsString()
   status?: TodoStatus; // 状态
 
   @IsString()
