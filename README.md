@@ -47,6 +47,4 @@ npm run db:reset
 ```
 
 ## Note
-
-原作者使用npm install 安装的包 跑出来一堆问题
-npm的包管理机制就是一坨垃圾 狗都不用
+We'd better use `pnpm install` instead of `npm install`
